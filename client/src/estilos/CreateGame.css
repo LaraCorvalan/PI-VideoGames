@@ -1,0 +1,58 @@
+.create-container{
+    margin : 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(C:\Users\Gabriela\Documents\Lara\HENRY\PI\PI-Videogames-main\client\src\utils\343976.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-repeat: no-repeat;
+}
+
+.lets-go{
+    color:aliceblue;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    display: flex;
+    justify-self: flex-start;
+    flex-direction: column;
+    margin-right: 750px ;
+    margin-top: 125px;
+    -webkit-text-stroke: 1px rgb(0, 0, 0);
+}
+
+#h2-1{
+    font-size: 100px;
+}
+
+#h2-1, #h2-2{
+    margin: 0px;
+    padding: 0px;
+    font-size: 70px;
+    text-shadow: 5px 5px rgb(255, 238, 0);
+    
+
+}
+
+#h1-1, #h1-2{
+    margin: 0px;
+    padding: 0px;
+    font-size: 120px;
+    text-shadow: 5px 5px rgb(255, 238, 0);
+}
+
+
+
+.divs-group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    color: aliceblue;
+    margin-top: 225px;
+    
+}
+
+

@@ -1,0 +1,77 @@
+.container {
+    margin : 0;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background-image: url(https://wallpaperaccess.com/full/16081.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center ;
+    flex-direction: column;
+}
+
+#h1 { 
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* align-self: center; */
+    color: white;
+    margin-bottom: 110px;
+}
+
+.title-1 /*,.title-2*/{
+    font-size: 60px;
+    color:rgb(255, 255, 255);
+    font-family: 'Press Start 2P', cursive;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 4px 4px rgba(8, 8, 8, 0.5);
+}
+
+#button-container {
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin: 110px;
+    margin-top: 160px;
+}
+
+.button{
+    border-radius: 8px;
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow:#242323 5px 5px 0px;
+    transition: transform 200ms, box-shadow 200ms;
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    padding: 5px;
+    padding-left: 7px;
+    padding-top: 7px;
+    color:gold;
+    text-shadow: 1px 1px black;
+    
+}
+
+.button:hover {
+    box-shadow: 1px 1px #242323, 2px 2px #242323, 3px 3px #242323;
+    transform: translateX(-3px);
+    cursor: pointer;
+}
+
+.button:active{
+    transform: translateY(5px) translateX(5px);
+    box-shadow:rgb(36, 35, 35) 0px 0px 0px;
+}
+
+@media (max-width:768px) {
+    .title-1{
+        font-size: 40px;
+    }
+    .button{
+        font-size: 30px;
+    }
+}
