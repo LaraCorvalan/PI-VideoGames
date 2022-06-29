@@ -23,7 +23,7 @@ await Promise.all([page1, page2, page3, page4, page5])
       //return {
          id: e.id,
          name: e.name,
-         rating: e.ratings,
+         rating: e.rating,
          platform: e.platforms.map(p => p.platform.name),
          image: e.background_image,
          genre: e.genres.map(gen => gen.name)

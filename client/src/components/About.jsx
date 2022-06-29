@@ -1,7 +1,10 @@
 import React from 'react';
+import '../estilos/About.css';
 
 export default function About(){
     return (
-        <div>About</div>
+        <div className='about-container'>
+            ABOUT
+        </div>
     )
 }

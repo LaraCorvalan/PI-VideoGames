@@ -2,13 +2,9 @@ import React from "react";
 import "../estilos/LandingPage.css";
 import { Link } from "react-router-dom";
 
-export default function LandingPage() {
-  // function handleOnClick(e){
-  //     e.preventDefault();
-  //     const navigate = useNavigate();
-  //     navigate('/home')
-  // }
 
+export default function LandingPage() {
+    
   return (
     <div className="container">
         {/* <div id= 'h1'> */}
@@ -19,7 +15,7 @@ export default function LandingPage() {
         <br/>
         <div id="button-container">
           <Link to="/home" style={{textDecoration:"none"}}>
-            <btn className="button">PRESS START</btn>
+            <button className="button">PRESS START</button>
           </Link>
         </div>
     </div>

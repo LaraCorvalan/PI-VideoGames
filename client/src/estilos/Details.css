@@ -1,4 +1,4 @@
-.home-container{
+.detail-container{
     margin : 0;
     display: flex;
     justify-content: center;
@@ -7,19 +7,17 @@
     background-size: cover;
     background-position: center ;
     background-attachment: fixed; 
-  
 }
 
-.card{
-    margin: 20px;
-    padding: 2px 16px;
+.detail{
+    background-color: rgba(255, 255, 255, 0.644);
+    margin: 40px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px yellow;
+}
 
-    background-color: aqua;
-    /* flex-direction: row; */
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-
-   
+.detail-title{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
 }

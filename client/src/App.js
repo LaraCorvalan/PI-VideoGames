@@ -17,7 +17,8 @@ function App() {
         <Route exact path={'/'} component={LandingPage} />
         <Route exact path={'/home'} component={Home} />
         <Route path={'/home/create'} component={CreateGame} />
-        <Route path={'/home/details'} component={Details}/>
+        <Route path={'/home/details/:id'} render={({match}) => <Details id={match.params.id}/>}/>
+        
         <Route path={'/home/about'} component={About} />
         {/* <Route exact path = '' component={NotFound} />  */}
     </React.Fragment>

@@ -5,16 +5,6 @@ const { getAllGames } = require("../controllers/cVideogames");
 const router = Router();
 
 router.get("/videogames", async (req, res) => {
-  // const {id, name, description, platform} = req.body;
-  // if(!id || !name || !description || !platform){
-  //     return res.status(404).send('Falta enviar datos obligatorios')
-  // }
-  // try {
-  //     return res.json(await Videogame.create(req.body))
-  // } catch (error) {
-  //     return res.status(404).send('Error en alguno de los datos provistos')
-  // }
-
   let allGames = await getAllGames();
 
   const { name } = req.query;
@@ -33,10 +23,6 @@ router.get("/videogames", async (req, res) => {
 });
 
 router.post("/videogames", async function (req, res) {
-  //recibir datos por body
-  // crear vidoejuego
-  // encontrar generos relacionados
-  // vincular con genre (con add)
   try {
     const { name, description, releaseDate, rating, platform, genres } = req.body;
 
@@ -46,6 +32,7 @@ router.post("/videogames", async function (req, res) {
       releaseDate,
       rating,
       platform,
+
     });
 
     let genreDB = await Genre.findAll({

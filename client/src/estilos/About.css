@@ -1,0 +1,11 @@
+.about-container{
+    margin : 0;
+    display: flex;
+    justify-content: center;
+    height: 93vh;
+    background-image: url(C:\Users\Gabriela\Documents\Lara\HENRY\PI\PI-Videogames-main\client\src\utils\343976.jpg);
+    background-size: cover;
+    background-position: center ;
+    background-attachment: fixed;
+
+}
