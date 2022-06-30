@@ -14,7 +14,7 @@ export default function CreateGame() {
   const dataArr = new Set(platforma);
   platforma = [...dataArr];
 
-  console.log("soy platforma", platforma);
+  //console.log("soy platforma", platforma);
 
   let [input, setInput] = useState({
     name: "",
@@ -23,7 +23,7 @@ export default function CreateGame() {
     rating: "",
     genres: [],
     platform: [],
-    image: "",
+    //image: "",
   });
 
   let handleChange = (e) => {
@@ -41,9 +41,9 @@ export default function CreateGame() {
       description: input.description,
       releaseDate: input.releaseDate,
       rating: input.rating,
-      genres: input.genres,
-      platform: input.platform,
-      image: input.image,
+      genres: input.genres.toString(),
+      platform: input.platform.toString(),
+      //image: input.image,
     }));
     console.log('soy input',input)
     setInput({
@@ -53,7 +53,7 @@ export default function CreateGame() {
       rating: "",
       genres: [],
       platform: [],
-      image: "",
+      //image: "",
     });
   };
 
@@ -149,15 +149,6 @@ export default function CreateGame() {
               ))}
           </select>
           <label>Platform</label>
-
-          <input
-            className="input-7"
-            type="text"
-            name={"image"}
-            value={input.image}
-            onChange={(e) => handleChange(e)}
-          />
-          <label>Image</label>
 
           <input className="input-btn" type="submit" value="CREATE GAME!" />
         </div>

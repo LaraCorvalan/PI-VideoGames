@@ -48,7 +48,7 @@ return resultados
    }
 }
 
-async function getDBGames(){
+async function getDBGames( ){
    try {
       let dbGames = await Videogame.findAll({
       // where:{name: {[Op.iLike]: `%${name}%`} },
@@ -70,23 +70,7 @@ async function getAllGames() {
       const DB_GAMES = await getDBGames();
       console.log(DB_GAMES)
       //const all = [...API_GAMES, ...DB_GAMES];
-      const gamesFront = []
-      DB_GAMES.forEach(e => {
-         let arrGenres= []
-         e.genres.forEach(g => arrGenres.push(g.name))
-         const objGame= {
-            id: e.id,
-            name: e.name,
-            description: e.description,
-            image: e.image,
-            releaseDate: e.releaseDate,
-            rating: e.rating,
-            platform: e.platform,
-            genres: arrGenres
-         }
-         gamesFront.push(objGame)
-      })
-      const all = API_GAMES.concat(gamesFront)
+      const all = API_GAMES.concat(DB_GAMES)
 
       return all;
    } catch (error) {
