@@ -1,19 +1,31 @@
 import React from "react";
 import "../estilos/CreateGame.css";
-import { createGame } from "../actions";
-import { useDispatch } from "react-redux";
+import { createGame, getGenres, getGames } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 export default function CreateGame() {
-  let [input, setInput] = React.useState({
+  const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genres);
+  const videogames = useSelector((state) => state.videogames);
+  
+  let platforma = videogames.map((e) => e.platform);
+  platforma = platforma.flat().sort();
+  const dataArr = new Set(platforma);
+  platforma = [...dataArr];
+
+  console.log("soy platforma", platforma);
+
+  let [input, setInput] = useState({
     name: "",
     description: "",
     releaseDate: "",
     rating: "",
     genres: [],
-    platforms: [],
+    platform: [],
     image: "",
   });
-  
+
   let handleChange = (e) => {
     e.preventDefault();
     setInput((prev) => ({
@@ -22,21 +34,53 @@ export default function CreateGame() {
     }));
   };
 
-  var dispatch = useDispatch();
-
   let handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createGame(input));
+    dispatch(createGame({
+      name: input.name,
+      description: input.description,
+      releaseDate: input.releaseDate,
+      rating: input.rating,
+      genres: input.genres,
+      platform: input.platform,
+      image: input.image,
+    }));
+    console.log('soy input',input)
     setInput({
       name: "",
       description: "",
       releaseDate: "",
       rating: "",
       genres: [],
-      platforms: [],
+      platform: [],
       image: "",
     });
   };
+
+  let handleSelectG = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      genres: [...input.genres, e.target.value],
+    });
+  };
+
+  let handleSelectP = (e) => {
+    e.preventDefault();
+    setInput({
+      ...input,
+      platform: [...input.platform, e.target.value],
+    });
+  };
+
+
+  useEffect(() => {
+    dispatch(getGames());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
 
   return (
     <div className="create-container">
@@ -59,7 +103,7 @@ export default function CreateGame() {
 
           <input
             className="input-2"
-            type="text"
+            type="textarea"
             name={"description"}
             value={input.description}
             onChange={(e) => handleChange(e)}
@@ -84,22 +128,26 @@ export default function CreateGame() {
           />
           <label>Rating</label>
 
-          <input
-            className="input-5"
-            type="text"
-            name={"genres"}
-            value={input.genres}
-            onChange={(e) => handleChange(e)}
-          />
+          <select className="input-5" name={'genres'} value={input.genres} onChange={(e) => handleSelectG(e)} >
+            <option name="genres">Choose an option</option>
+            {genres &&
+              genres.map((g) => (
+                <option key={g.id} >
+                  {g.name}
+                </option>
+              ))}
+          </select>
           <label>Genres</label>
 
-          <input
-            className="input-6"
-            type="text"
-            name={"platforms"}
-            value={input.platforms}
-            onChange={(e) => handleChange(e)}
-          />
+          <select className="input-6" name={'platform'} value={input.platform} onChange={(e) => handleSelectP(e)} >
+            <option name="platform">Choose an option</option>
+            {platforma &&
+              platforma.map((p) => (
+                <option key={p} >
+                  {p}
+                </option>
+              ))}
+          </select>
           <label>Platform</label>
 
           <input

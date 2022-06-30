@@ -1,9 +1,13 @@
 import axios from "axios";
 
-export function createGame(){
+export function createGame(objeto){
     return async function (dispatch){
-        let post = await axios.post('http://localhost:3001/videogames')
-        return post
+        let post = await axios.post('http://localhost:3001/videogames', objeto)
+        console.log('soy post.data',post.data)
+        return dispatch({
+          type: 'CREATE_GAME',
+          payload: post.data,
+        })
     }
 }
 // trae todos los juegos
@@ -11,7 +15,7 @@ export function getGames() {
   return async function (dispatch) {
     let games = await axios.get("http://localhost:3001/videogames");
     let resultGames = games.data;
-    console.log('yo tengo info - actions >>',resultGames);
+    //console.log('yo tengo info - actions >>',resultGames);
     return dispatch({
       type: "GET_GAMES",
       payload: resultGames,
@@ -24,7 +28,7 @@ export function getDetail(id){
     try {
       let gamesId = await axios.get(`http://localhost:3001/videogame/${id}`);
       let resultGamesId = gamesId.data;
-      console.log('yo tengo info ->>', gamesId)
+      //console.log('yo tengo info ->>', gamesId)
       return dispatch({
         type: "GET_DETAIL",
         payload: resultGamesId
@@ -48,7 +52,7 @@ export function getGamebyName(name) {
         payload: queryName.data,
       });
     } catch (error) {
-      alert("Game not found");
+      alert("Couldn't find the game");
     }
   };
 }

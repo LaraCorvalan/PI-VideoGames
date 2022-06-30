@@ -12,10 +12,10 @@ router.get('/genres', async (req, res) => {
         let resultado = request.data.results
         //console.log(resultado)
         for (let i = 0; i < resultado.length; i++) {
-            await Genre.create({name : resultado[i].name, id : resultado[i].id})
+            await Genre.findOrCreate({where: {name : resultado[i].name, id : resultado[i].id}})
         }
         let find = await Genre.findAll()
-        res.json(find)
+        res.status(200).json(find)
     } catch (error) {
         console.log(error)
     }

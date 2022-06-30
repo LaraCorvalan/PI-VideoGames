@@ -7,10 +7,9 @@ export default function NavBar() {
   return (
     <React.Fragment>
       <nav className="navbar">
-        {/* <div className= 'div-img'>
-          <img src = 'https://api.iconify.design/fxemoji:videogame.svg' alt='logo'/>
-        </div> */}
-        
+        <div className = 'search-bar'>
+          <SearchBar/>
+        </div>
         <button className="btn-1">
           <NavLink to={"/home"}  style={{textDecoration:"none"}}>Home</NavLink>
         </button>
@@ -24,7 +23,3 @@ export default function NavBar() {
     </React.Fragment>
   );
 }
-
-// como creo un componente?
-// import react from "react";
-// defino si va a ser de clase o funcional

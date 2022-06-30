@@ -9,10 +9,10 @@ async function getById_api(id){
         id: data.id,
         name: data.name,
         description: data.description_raw,
-        released: data.released,
+        releaseDate: data.released,
         image: data.background_image,
         rating: data.rating,
-        platforms: data.platforms.map(el => el.platform.name).join(' - '),
+        platform: data.platforms.map(el => el.platform.name).join(' - '),
         genres: data.genres.map(el => el.name).join(' - ')
     }
     return detalle;

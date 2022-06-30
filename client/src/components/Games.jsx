@@ -16,7 +16,7 @@ export default function Games({ videogames }) {
                 name={g.name}
                 rating={g.rating}
                 image={g.image}
-                genre={g.genre.toString()}
+                genre={g.genre}
               />
             </div>
           );

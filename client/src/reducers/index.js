@@ -1,10 +1,11 @@
 const initialState = {
     videogames: [],
+    gamesDB: {},
     detail: [],
     filteredGames: [],
     genres: [],
-    // loading: true,
     
+    // loading: true,
 };
 
 export default function RootReducer(state = initialState, action){
@@ -19,7 +20,7 @@ export default function RootReducer(state = initialState, action){
             return {
                 ...state,
                 // games --> [{}, {}, {}, {}]
-                games: [...state.games, action.payload],
+                videogames: [...state.videogames, action.payload],
             };
         case 'GET_GAME_BYNAME':
             return {

@@ -48,16 +48,17 @@ return resultados
    }
 }
 
-async function getDBGames(name, atributte){
+async function getDBGames(){
    try {
       let dbGames = await Videogame.findAll({
-      where:{name: {[Op.iLike]: `%${name}%`} },
-      atributte : atributte, 
+      // where:{name: {[Op.iLike]: `%${name}%`} },
+      // atributte : atributte, 
       include: [Genre]
       })
-     //console.log(dbGames)
+     console.log(dbGames)
       return dbGames
       //falta mas datos?? 
+
    } catch (error) {
       console.log('Error en f(x) getDBGames ->> ', error)
    }
@@ -67,9 +68,25 @@ async function getAllGames() {
    try {
       const API_GAMES = await getAPIGames();
       const DB_GAMES = await getDBGames();
-
+      console.log(DB_GAMES)
       //const all = [...API_GAMES, ...DB_GAMES];
-      const all = API_GAMES.concat(DB_GAMES)
+      const gamesFront = []
+      DB_GAMES.forEach(e => {
+         let arrGenres= []
+         e.genres.forEach(g => arrGenres.push(g.name))
+         const objGame= {
+            id: e.id,
+            name: e.name,
+            description: e.description,
+            image: e.image,
+            releaseDate: e.releaseDate,
+            rating: e.rating,
+            platform: e.platform,
+            genres: arrGenres
+         }
+         gamesFront.push(objGame)
+      })
+      const all = API_GAMES.concat(gamesFront)
 
       return all;
    } catch (error) {
