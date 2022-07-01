@@ -4,17 +4,45 @@ import { createGame, getGenres, getGames } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
+function validate(input) {
+  let errores = {};
+  let validateFecha =
+    /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+
+  if (!input.name) {
+    errores.name = "Name is required!";
+  } else if (!input.description || input.description.length < 20) {
+    errores.description = "Description must have at least 20 characters";
+  } else if (!validateFecha.test(input.releaseDate)) {
+    errores.releaseDate = "Release date must be dd/mm/yyyy";
+  } else if (
+    !input.rating ||
+    !Number(input.rating) ||
+    input.rating < 0 ||
+    input.rating > 5 ||
+    input.rating === ""
+  ) {
+    errores.rating = "Rating must be between 0 and 5";
+  } else if (!input.genres) {
+    errores.genres = "You have to choose at least one option";
+  } else if (!input.platform) {
+    errores.platform = "You have to choose at least one option";
+  }
+  return errores;
+}
+
 export default function CreateGame() {
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
   const videogames = useSelector((state) => state.videogames);
-  
+  const [error, setError] = useState({});
+
+  console.log("soy error", error);
+
   let platforma = videogames.map((e) => e.platform);
   platforma = platforma.flat().sort();
   const dataArr = new Set(platforma);
   platforma = [...dataArr];
-
-  //console.log("soy platforma", platforma);
 
   let [input, setInput] = useState({
     name: "",
@@ -23,38 +51,58 @@ export default function CreateGame() {
     rating: "",
     genres: [],
     platform: [],
-    //image: "",
   });
 
   let handleChange = (e) => {
     e.preventDefault();
-    setInput((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setInput((input) => {
+      const newInput = {
+        ...input,
+        [e.target.name]: e.target.value,
+      };
+      const ERROR = validate(newInput);
+      setError(ERROR);
+
+      return newInput;
+    });
   };
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createGame({
-      name: input.name,
-      description: input.description,
-      releaseDate: input.releaseDate,
-      rating: input.rating,
-      genres: input.genres.toString(),
-      platform: input.platform.toString(),
-      //image: input.image,
-    }));
-    console.log('soy input',input)
-    setInput({
-      name: "",
-      description: "",
-      releaseDate: "",
-      rating: "",
-      genres: [],
-      platform: [],
-      //image: "",
-    });
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
+    if (Object.keys(error).length === 0) {
+      dispatch(
+        createGame({
+          name: input.name,
+          description: input.description,
+          releaseDate: input.releaseDate,
+          rating: input.rating,
+          genres: input.genres.toString(),
+          platform: input.platform.toString(),
+        })
+      );
+      alert("Game created successfully");
+      setInput({
+        name: "",
+        description: "",
+        releaseDate: "",
+        rating: "",
+        genres: [],
+        platform: [],
+        //image: "",
+      });
+      // setTimeout(() => {
+      //   history('/home')
+      // }, 2000)
+    } else {
+      alert("Game was not created. Fill in all the blanks!");
+      return;
+    }
   };
 
   let handleSelectG = (e) => {
@@ -73,6 +121,14 @@ export default function CreateGame() {
     });
   };
 
+  function handleDelete(e) {
+    e.preventDefault();
+    setInput({
+        ...input,
+        genres: input.genres.filter((gen) => gen !== e.target.value),
+        platform: input.platform.filter((pt) => pt !== e.target.value),
+    });
+};
 
   useEffect(() => {
     dispatch(getGames());
@@ -92,63 +148,133 @@ export default function CreateGame() {
       </div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="divs-group">
-          <input
-            className="input-1"
-            type="text"
-            name={"name"}
-            value={input.name}
-            onChange={(e) => handleChange(e)}
-          />
-          <label>Name</label>
+          <div>
+            <label>Name</label>
+            <input
+              className="input-1"
+              type="text"
+              name={"name"}
+              value={input.name}
+              onChange={(e) => handleChange(e)}
+            />
+            {error.name && (
+              <p>
+                {" "}
+                <small>{error.name}</small>
+              </p>
+            )}
+          </div>
+          <div>
+            <label>Description</label>
+            <input
+              className="input-2"
+              type="textarea"
+              name={"description"}
+              value={input.description}
+              onChange={(e) => handleChange(e)}
+            />
+            {error.description && (
+              <p>
+                <small>{error.description}</small>
+              </p>
+            )}
+          </div>
 
-          <input
-            className="input-2"
-            type="textarea"
-            name={"description"}
-            value={input.description}
-            onChange={(e) => handleChange(e)}
-          />
-          <label>Description</label>
+          <div>
+            <label>Release Date</label>
+            <input
+              className="input-3"
+              type="text"
+              name={"releaseDate"}
+              value={input.releaseDate}
+              onChange={(e) => handleChange(e)}
+            />
+            {error.releaseDate && (
+              <p>
+                <small>{error.releaseDate}</small>
+              </p>
+            )}
+          </div>
 
-          <input
-            className="input-3"
-            type="text"
-            name={"releaseDate"}
-            value={input.releaseDate}
-            onChange={(e) => handleChange(e)}
-          />
-          <label>Release Date</label>
+          <div>
+            <label>Rating</label>
+            <input
+              className="input-4"
+              type="text"
+              name={"rating"}
+              value={input.rating}
+              onChange={(e) => handleChange(e)}
+            />
+            {error.rating && (
+              <p>
+                <small>{error.rating}</small>
+              </p>
+            )}
+          </div>
 
-          <input
-            className="input-4"
-            type="text"
-            name={"rating"}
-            value={input.rating}
-            onChange={(e) => handleChange(e)}
-          />
-          <label>Rating</label>
-
-          <select className="input-5" name={'genres'} value={input.genres} onChange={(e) => handleSelectG(e)} >
-            <option name="genres">Choose an option</option>
-            {genres &&
-              genres.map((g) => (
-                <option key={g.id} >
-                  {g.name}
-                </option>
+          <div>
+            <label>Genres</label>
+            <select
+              className="input-5"
+              name={"genres"}
+              value={input.genres}
+              onChange={(e) => handleSelectG(e)}
+            >
+              <option name="genres">Choose an option</option>
+              {genres &&
+                genres.map((g) => <option key={g.id}>{g.name}</option>)}
+            </select>
+            {error.genres && (
+              <p>
+                <small>{error.genres}</small>
+              </p>
+            )}
+          </div>
+{/* GENRES SELECTED */}
+          <div>
+            <p>Genres Selected:</p>
+            {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
+            <div className="buttons">
+              {input.genres.map((gen) => (
+                <div>
+                  <button onClick={handleDelete} value={gen}>{gen}</button>
+                </div>
               ))}
-          </select>
-          <label>Genres</label>
+            </div>
+          </div>
 
-          <select className="input-6" name={'platform'} value={input.platform} onChange={(e) => handleSelectP(e)} >
-            <option name="platform">Choose an option</option>
-            {platforma &&
-              platforma.map((p) => (
-                <option key={p} >
-                  {p}
-                </option>
-              ))}
-          </select>
-          <label>Platform</label>
+          <div>
+            <label>Platform</label>
+            <select
+              className="input-6"
+              name={"platform"}
+              value={input.platform}
+              onChange={(e) => handleSelectP(e)}
+            >
+              <option name="platform">Choose an option</option>
+              {platforma && platforma.map((p) => <option key={p}>{p}</option>)}
+            </select>
+            {error.platform && (
+              <p>
+                <small>{error.platform}</small>
+              </p>
+            )}
+          </div>
+
+          <div>
+                        <p>Platforms Selected:</p> 
+                    {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
+                    <div className='buttons'>
+                            {input.platform.map(p => (
+                                <div>
+                                    <button onClick={handleDelete} className='btn-create' value={p}>
+                                        {p}
+                                    </button>
+                                </div>
+                                ))
+                            }
+                    </div>  
+                    </div> 
 
           <input className="input-btn" type="submit" value="CREATE GAME!" />
         </div>

@@ -27,7 +27,7 @@ export default function Details({ id }) {
     <div className="detail-container">
       <div className="detail">
         <h3 className="detail-title">{detalle.name}</h3>
-        <img src={detalle.image} alt="Image not found" height="200px" />
+        <img src={detalle.image? detalle.image : 'https://images.unsplash.com/photo-1543622748-5ee7237e8565?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'} alt="Image not found" height="200px" />
         <h3>Description: {detalle.description}</h3>
         <h3>Released Date: {detalle.releaseDate}</h3>
         <h3>Rating: {detalle.rating}</h3>
