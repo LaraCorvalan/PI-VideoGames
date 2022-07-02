@@ -1,5 +1,7 @@
 .card-container{
     margin:0px; 
+    display: flex;
+    justify-content: center;
    
 }
 
@@ -24,9 +26,18 @@
     box-shadow: 5px 5px 5px rgb(243, 247, 2);
     
 }
+.card-genre{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px;
+    padding: 0px;
+}
 
 .card-rating{
     display: flex;
     flex-direction: row;
     align-items: center;
+    padding: 0px;
+    margin: 0px;
 }

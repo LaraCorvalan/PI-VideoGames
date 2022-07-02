@@ -7,18 +7,20 @@ export default function NavBar() {
   return (
     <React.Fragment>
       <nav className="navbar">
-        <div className = 'search-bar'>
-          <SearchBar/>
+        <div className="button-container">
+        <NavLink to={"/home"} style={{ textDecoration: "none" }}>
+          <button className="btn-1" onClick="window.location.reload(true)">Home</button>
+        </NavLink>
+        <NavLink to={"/home/create"} style={{ textDecoration: "none" }}>
+          <button className="btn-2">Create Game</button>
+        </NavLink>
+        <NavLink to={"/home/about"} style={{ textDecoration: "none" }}>
+          <button className="btn-3">About</button>
+        </NavLink>
+      </div>
+        <div className="search-bar">
+          <SearchBar />
         </div>
-        <button className="btn-1">
-          <NavLink to={"/home"}  style={{textDecoration:"none"}}>Home</NavLink>
-        </button>
-        <button className="btn-2">
-          <NavLink to={"/home/create"}  style={{textDecoration:"none"}}>Create Game</NavLink>
-        </button>
-        <button className="btn-3">
-          <NavLink to={"/home/about"}  style={{textDecoration:"none"}}>About</NavLink>
-        </button>
       </nav>
     </React.Fragment>
   );

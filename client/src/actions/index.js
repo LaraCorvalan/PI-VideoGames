@@ -69,6 +69,28 @@ export function getGenres() {
     }
 };
 
+export function orderGames(data){
+  return {
+    type: 'ORDER_GAMES',
+    payload: data
+  }
+}
+
+export function filterGames(info){
+  return {
+    type: 'FILTER_GAMES',
+    payload: info
+  }
+}
+
+// export function orderByRating(data){
+//   return {
+//     type: 'ORDER_BY_AZ',
+//     payload: data
+//   }
+// }
+
+
 // export function loading(payload){
 //   return {
 //     type: "LOADING",

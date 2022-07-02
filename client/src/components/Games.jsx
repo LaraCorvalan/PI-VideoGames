@@ -4,6 +4,7 @@ import '../estilos/Games.css'
 
 export default function Games({ videogames }) {
   // console.log('soy games >> ', videogames);
+
   return (
     <div className='games-card' >
       {videogames &&
@@ -16,8 +17,10 @@ export default function Games({ videogames }) {
                 name={g.name}
                 rating={g.rating}
                 image={g.image}
-                genre={g.genre}
+                genre={g.genre ? g.genre : g.genres.map(e => e.name)}
+                
               />
+              {/* {console.log('soy genres',g.genres)} */}
             </div>
           );
         })}

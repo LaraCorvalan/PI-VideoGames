@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { getGamebyName } from "../actions";
 import { useDispatch } from "react-redux";
+import '../estilos/SearchBar.css'
 
 export default function SearchBar() {
   const [input, setInput] = useState({
@@ -28,16 +29,16 @@ export default function SearchBar() {
 
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className='search-container'>
         <input
           className="input-text"
           type="text"
-          placeholder= 'Looking for a game?'
+          placeholder= '   Looking for a game?'
           name={"name"}
           value={input.name}
           onChange={(e) => handleChange(e)}
         />
-        <input className="submit" type="submit" value="Search" />
+        <button className="submit" type="submit" value="Search">Search</button>
       </form>
     </div>
   );

@@ -14,7 +14,7 @@ export default function Details({ id }) {
   React.useEffect(() => {
     if (detalle.genres) {
       if (Array.isArray(detalle.genres)) {
-        setGeneros(detalle.genres.map((e) => e.name).toString());
+        setGeneros(detalle.genres.map((e) => e.name));
       } else {
         setGeneros(detalle.genres);
       }

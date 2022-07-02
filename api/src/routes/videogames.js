@@ -24,7 +24,7 @@ router.get("/videogames", async (req, res) => {
 
 router.post("/videogames", async function (req, res) {
   try {
-    const { name, description, releaseDate, rating, platform, genres, /*image*/ } = req.body;
+    const { name, description, releaseDate, rating, platform, genre, /*image*/ } = req.body;
 
     let newGame = await Videogame.create({
       name,
@@ -36,7 +36,7 @@ router.post("/videogames", async function (req, res) {
     });
 
     let genreDB = await Genre.findAll({
-      where: { name: genres },
+      where: { name: genre },
     });
 
     newGame.addGenre(genreDB);

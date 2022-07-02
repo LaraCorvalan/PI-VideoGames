@@ -37,7 +37,7 @@ export default function CreateGame() {
   const videogames = useSelector((state) => state.videogames);
   const [error, setError] = useState({});
 
-  console.log("soy error", error);
+  //console.log("soy error", error);
 
   let platforma = videogames.map((e) => e.platform);
   platforma = platforma.flat().sort();
@@ -86,6 +86,7 @@ export default function CreateGame() {
           platform: input.platform.toString(),
         })
       );
+      console.log("soy input", input);
       alert("Game created successfully");
       setInput({
         name: "",
@@ -124,11 +125,11 @@ export default function CreateGame() {
   function handleDelete(e) {
     e.preventDefault();
     setInput({
-        ...input,
-        genres: input.genres.filter((gen) => gen !== e.target.value),
-        platform: input.platform.filter((pt) => pt !== e.target.value),
+      ...input,
+      genres: input.genres.filter((gen) => gen !== e.target.value),
+      platform: input.platform.filter((pt) => pt !== e.target.value),
     });
-};
+  }
 
   useEffect(() => {
     dispatch(getGames());
@@ -146,9 +147,9 @@ export default function CreateGame() {
         <h2 id="h2-2">YOUR OWN</h2>
         <h1 id="h1-2">GAME</h1>
       </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className="form-container">
         <div className="divs-group">
-          <div>
+          <div className="form-1">
             <label>Name</label>
             <input
               className="input-1"
@@ -164,7 +165,7 @@ export default function CreateGame() {
               </p>
             )}
           </div>
-          <div>
+          <div className="form-2">
             <label>Description</label>
             <input
               className="input-2"
@@ -180,7 +181,7 @@ export default function CreateGame() {
             )}
           </div>
 
-          <div>
+          <div className="form-3">
             <label>Release Date</label>
             <input
               className="input-3"
@@ -196,7 +197,7 @@ export default function CreateGame() {
             )}
           </div>
 
-          <div>
+          <div className="form-4">
             <label>Rating</label>
             <input
               className="input-4"
@@ -212,7 +213,7 @@ export default function CreateGame() {
             )}
           </div>
 
-          <div>
+          <div className="form-5">
             <label>Genres</label>
             <select
               className="input-5"
@@ -230,20 +231,22 @@ export default function CreateGame() {
               </p>
             )}
           </div>
-{/* GENRES SELECTED */}
-          <div>
-            <p>Genres Selected:</p>
+          {/* GENRES SELECTED */}
+          <div className="selected-1">
+            <p className="genres-selected">SELECTED GENRES:</p>
             {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
             <div className="buttons">
               {input.genres.map((gen) => (
                 <div>
-                  <button onClick={handleDelete} value={gen}>{gen}</button>
+                  <button onClick={handleDelete} value={gen}>
+                    {gen}
+                  </button>
                 </div>
               ))}
             </div>
           </div>
 
-          <div>
+          <div className="form-6">
             <label>Platform</label>
             <select
               className="input-6"
@@ -261,20 +264,23 @@ export default function CreateGame() {
             )}
           </div>
 
-          <div>
-                        <p>Platforms Selected:</p> 
-                    {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
-                    <div className='buttons'>
-                            {input.platform.map(p => (
-                                <div>
-                                    <button onClick={handleDelete} className='btn-create' value={p}>
-                                        {p}
-                                    </button>
-                                </div>
-                                ))
-                            }
-                    </div>  
-                    </div> 
+          <div className='selected-2'>
+            <p className="platform-selected">SELECTED PLATFORMS:</p>
+            {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
+            <div className="buttons">
+              {input.platform.map((p) => (
+                <div>
+                  <button
+                    onClick={handleDelete}
+                    className="btn-create"
+                    value={p}
+                  >
+                    {p}
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
 
           <input className="input-btn" type="submit" value="CREATE GAME!" />
         </div>
