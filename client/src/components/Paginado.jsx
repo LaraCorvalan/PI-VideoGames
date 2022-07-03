@@ -7,7 +7,7 @@ const Paginado = ({ postPerPage, totalPosts, paginate }) => {
     for (let i = 1; i <= Math.ceil(totalPosts / postPerPage); i++) {
       pageNumber.push(i);
     }
-    console.log(pageNumber);
+    //console.log(pageNumber);
   
     return (
       <nav>

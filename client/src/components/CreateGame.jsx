@@ -23,8 +23,8 @@ function validate(input) {
     input.rating === ""
   ) {
     errores.rating = "Rating must be between 0 and 5";
-  } else if (!input.genres) {
-    errores.genres = "You have to choose at least one option";
+  } else if (!input.genre) {
+    errores.genre = "You have to choose at least one option";
   } else if (!input.platform) {
     errores.platform = "You have to choose at least one option";
   }
@@ -49,7 +49,7 @@ export default function CreateGame() {
     description: "",
     releaseDate: "",
     rating: "",
-    genres: [],
+    genre: [],
     platform: [],
   });
 
@@ -82,7 +82,7 @@ export default function CreateGame() {
           description: input.description,
           releaseDate: input.releaseDate,
           rating: input.rating,
-          genres: input.genres.toString(),
+          genre: input.genre,
           platform: input.platform.toString(),
         })
       );
@@ -93,7 +93,7 @@ export default function CreateGame() {
         description: "",
         releaseDate: "",
         rating: "",
-        genres: [],
+        genre: [],
         platform: [],
         //image: "",
       });
@@ -110,7 +110,7 @@ export default function CreateGame() {
     e.preventDefault();
     setInput({
       ...input,
-      genres: [...input.genres, e.target.value],
+      genre: [...input.genre, e.target.value],
     });
   };
 
@@ -126,7 +126,7 @@ export default function CreateGame() {
     e.preventDefault();
     setInput({
       ...input,
-      genres: input.genres.filter((gen) => gen !== e.target.value),
+      genre: input.genre.filter((gen) => gen !== e.target.value),
       platform: input.platform.filter((pt) => pt !== e.target.value),
     });
   }
@@ -217,17 +217,17 @@ export default function CreateGame() {
             <label>Genres</label>
             <select
               className="input-5"
-              name={"genres"}
-              value={input.genres}
+              name={"genre"}
+              value={input.genre}
               onChange={(e) => handleSelectG(e)}
             >
-              <option name="genres">Choose an option</option>
+              <option name="genre">Choose an option</option>
               {genres &&
                 genres.map((g) => <option key={g.id}>{g.name}</option>)}
             </select>
-            {error.genres && (
+            {error.genre && (
               <p>
-                <small>{error.genres}</small>
+                <small>{error.genre}</small>
               </p>
             )}
           </div>
@@ -236,7 +236,7 @@ export default function CreateGame() {
             <p className="genres-selected">SELECTED GENRES:</p>
             {/* BOTON PARA HACER CLICK Y BORRAR LA OPCION ELEGIDA: */}
             <div className="buttons">
-              {input.genres.map((gen) => (
+              {input.genre.map((gen) => (
                 <div>
                   <button onClick={handleDelete} value={gen}>
                     {gen}

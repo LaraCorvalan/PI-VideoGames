@@ -3,7 +3,7 @@ import axios from "axios";
 export function createGame(objeto){
     return async function (dispatch){
         let post = await axios.post('http://localhost:3001/videogames', objeto)
-        console.log('soy post.data',post.data)
+        //console.log('soy post.data',post.data)
         return dispatch({
           type: 'CREATE_GAME',
           payload: post.data,
@@ -80,6 +80,19 @@ export function filterGames(info){
   return {
     type: 'FILTER_GAMES',
     payload: info
+  }
+}
+
+export function filterGenre(info){
+  return {
+    type: 'FILTER_GENRE',
+    payload: info
+  }
+}
+
+export function borrarOrder(){
+  return {
+    type: 'BORRAR'
   }
 }
 

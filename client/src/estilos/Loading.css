@@ -1,0 +1,81 @@
+.loader-container{
+    margin : 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height:100vh;
+    background-image: url(C:\Users\Gabriela\Documents\Lara\HENRY\PI\PI-Videogames-main\client\src\utils\343976.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+}
+
+.load{
+    display: flex;
+    justify-content: center;
+}
+
+.loading-text{
+    color:rgb(255, 255, 255);
+    font-family: 'Press Start 2P', cursive;
+}
+
+/* .loader {
+    position: relative;
+    border: 60px solid #fffb00;
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: eat 1s linear infinite;
+  }
+  .loader::after , .loader::before {
+    content: '';
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(255, 251, 0);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    opacity: 0;
+    animation: move 2s linear infinite;
+  }
+
+  .loader::before {
+    animation-delay: 1s;
+  }
+
+  @keyframes eat {
+    0% , 49% { border-right-color: #fffb00 }
+    50% , 100% { border-right-color: #0000 }
+  }
+  @keyframes move {
+    0% { left: 75px ; opacity: 1}
+    50% { left: 0px; opacity: 1 }
+    52%, 100% { left: -5px; opacity: 0; }
+  } */
+
+  .loader{
+    display: block;
+    position: relative;
+    height: 40px;
+    width: 160px;
+    background-image: 
+    linear-gradient(#FFF 40px, transparent 0), 
+    linear-gradient(#FFF 40px, transparent 0), 
+    linear-gradient(#FFF 40px, transparent 0), 
+    linear-gradient(#FFF 40px, transparent 0);
+    background-repeat: no-repeat;
+    background-size: 20px auto;
+    background-position: 0 0, 40px 0, 80px 0, 120px 0;
+    animation: pgfill 1s linear infinite;
+  }
+  @keyframes pgfill {
+    0% {   background-image: linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0); }
+    25% {   background-image: linear-gradient(#560079 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0); }
+    50% {   background-image: linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0); }
+    75% {   background-image: linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0), linear-gradient(#FFF 40px, transparent 0); }
+    100% {   background-image: linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0), linear-gradient(#560079 40px, transparent 0); }
+  }
+  

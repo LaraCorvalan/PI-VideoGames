@@ -7,5 +7,72 @@
     background-size: cover;
     background-position: center ;
     background-attachment: fixed;
+}
 
+.text-container{
+    background-color: rgba(255, 255, 255, 0.644);
+    margin: 80px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px yellow;
+}
+
+.about-title{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    text-shadow: 5px 5px 5px yellow;
+}
+
+.about-text{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+    
+}
+
+.rawg-link{
+    color: yellow;
+    text-shadow: 3px 3px 3px black;
+}
+
+.tech-title{
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    align-items: center;
+}
+
+.tech-items{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+}
+
+.links-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px;
+    margin-bottom: 20px;
+
+}
+
+.about-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.link-name{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 25px;
+}
+
+.about-img{
+    height: 25px;
+    width: 25px;
+    margin: 7px;
 }

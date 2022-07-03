@@ -9,7 +9,7 @@ export default function NavBar() {
       <nav className="navbar">
         <div className="button-container">
         <NavLink to={"/home"} style={{ textDecoration: "none" }}>
-          <button className="btn-1" onClick="window.location.reload(true)">Home</button>
+          <button className="btn-1" onClick='window.location.reload(true)'>Home</button>
         </NavLink>
         <NavLink to={"/home/create"} style={{ textDecoration: "none" }}>
           <button className="btn-2">Create Game</button>

@@ -12,7 +12,6 @@ let page2 =  axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=2`)
 let page3 =  axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=3`)
 let page4 =  axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=4`)
 let page5 =  axios.get(`https://api.rawg.io/api/games?key=${API_KEY}&page=5`)
-// console.log(page1.data)
 // console.log(page2.data)
 //Espera a q esten todas las promesas listas y las devuelve todas juntas en un mismo array
 await Promise.all([page1, page2, page3, page4, page5])
@@ -52,7 +51,6 @@ async function getDBGames( ){
    try {
       let dbGames = await Videogame.findAll({
       // where:{name: {[Op.iLike]: `%${name}%`} },
-      // atributte : atributte, 
       include: [Genre]
       })
      console.log(dbGames)
@@ -68,9 +66,9 @@ async function getAllGames() {
    try {
       const API_GAMES = await getAPIGames();
       const DB_GAMES = await getDBGames();
-      console.log(DB_GAMES)
       //const all = [...API_GAMES, ...DB_GAMES];
       const all = API_GAMES.concat(DB_GAMES)
+      console.log(all)
 
       return all;
    } catch (error) {
